@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-
+<meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="styles.css" />
+<link rel="stylesheet" type="text/css" href="panelsstyle.css" />
 <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7/dist/css/bootstrap.css" />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-	<!-- three.js parts  -->
-	<script src="../3D Model Part/three.js"></script>
-	<script src="../3D Model Part/OrbitControls.js"></script>
-	<script src="../3D Model Part/ColladaLoader.js"></script>
-	<script src="../3D Model Part/Detector.js"></script>
-	<script src="../3D Model Part/3D_Test.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- local libs-->
+  <!-- three.js parts  -->
+  <script src="../3D Model Part/three.js"></script>
+  <script src="../3D Model Part/OrbitControls.js"></script>
+  <script src="../3D Model Part/ColladaLoader.js"></script>
+  <script src="../3D Model Part/Detector.js"></script>
+  <script src="../3D Model Part/3D_Test.js"></script>
+  <script src="../../DynamicPanels/3D_Test.js"></script>
 </head>
-<!--
-<style>
-</style> -->
 
 <body>
 <hgroup>
@@ -37,15 +32,15 @@
   <!-- <div class="container-fluid"> -->
     <ul class="nav navbar-nav" id="navigationContainer">
       <li><a href="#" id="tab1">Order Info</a></li>
-	  <li><a href="#" id="tab2">Recipe Info</a></li>
-	  <li><a href="#" id="tab3">Visualization</a></li>
-	  <li><a class="disabled">Order Code</a></li>
+      <li><a href="#" id="tab2">Recipe Info</a></li>
+      <li><a href="#" id="tab3">Visualization</a></li>
+      <li><a class="disabled">Order Code</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-	 <li class="dropdown">
-		 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-			<span class="glyphicon glyphicon-cog"></span>
-		 </a>
+	    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>
           <li><a href="#">Page 1-2</a></li>
@@ -59,16 +54,13 @@
 
 
 <main class="mainContainer">
-    <div class="leftSideBar"></div>
+    <div id="includedContent"></div>
+    <!-- <div class="leftSideBar"></div>
     <div class="content">
       <div class="contentHeader">Header</div>
-      <div class="contentBody">ContentContentContent
-        ContentContentContentContentContentContentContent
-        ContentContentContentContentContentContentContentContent
-        ContentContentContentContentContentContentContentContentContent
-        ContentContentContentContentContent</div>
+      <div class="contentBody">ContentContentContent </div>
     </div>
-    <div class="rightSideBar"></div>
+    <div class="rightSideBar"></div> -->
 </main>
 
   <footer>
@@ -79,14 +71,13 @@
 
 
 <script type="text/javascript">
+$(function(){
+    $("#includedContent").load("dynamicPanels.html"); 
+});
 //loading from extern files
 $(function(){
-     $(".leftSideBar").load("TabsContainer.html");
+    $(".leftSideBar").load("TabsContainer.html");
       // $(".content").load("Content.html");
-});
-
-$(function(){
-
 });
 
  $(document).ready(function() {
@@ -96,9 +87,10 @@ $(function(){
 //navigationContainer logic
 $('#navigationContainer a').on('click', function() {
   var id = $(this).prop('id');
+  console.log(id)
 
+  
   $(".leftSideBar").show();
-
   $('.leftSideBar > div[data-id=' + id + ']').show();
   $('.leftSideBar > div:not([data-id=' + id + '])').hide();
 });

@@ -23,7 +23,8 @@ a.disabled {
 }
 
 .mainContainer {
-  display: flex;
+  /* display: flex; */
+  width: 100%;
 }
 
 .mainContainer > .leftSideBar {
