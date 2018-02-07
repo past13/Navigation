@@ -1,15 +1,13 @@
 <html>
   <head>
-  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-  <meta charset=utf-8 />
-  <link rel="stylesheet" href="styles.css">
-  <title>JS Bin</title>
+  <link rel="stylesheet" href="styles.css">   
   </head>
   <body>
       <div id="container">
           <div id="splitter0" class="resizer first"></div>
           <div id="col1" class="col" >
               <h3 id="panel1" onclick="hidepanel(this)">First container</h3>
+              
               <p class="tekstas">"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
           </div>
           <div id="splitter1" class="resizer first"></div>
@@ -28,8 +26,7 @@
               <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
           </div>
       </div>
-    <script> 
-    
+    <script>     
     draggedpanel = -1;
     panels = [];
     currmousex = -1;
@@ -38,6 +35,11 @@
     PREFIXPANEL = 'panel';  
     PREFIXCROSS = '#';
     CONTAINER = '#container';   
+
+    $(function() { 
+      $( "#splitter2" ).load(readRecipeFile('recipe.xml')); 
+    });
+
 
     function calculateColWidth(columnwidth) {  
       if (columnwidth > MINPANELWIDTH && columnwidth != MINPANELWIDTH) {      

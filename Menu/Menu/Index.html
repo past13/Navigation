@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>  
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <link rel="stylesheet" type="text/css" href="panelsstyle.css" />
@@ -8,14 +8,20 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!-- local libs-->
-  <!-- three.js parts  -->
+
   <script src="../3D Model Part/three.js"></script>
   <script src="../3D Model Part/OrbitControls.js"></script>
   <script src="../3D Model Part/ColladaLoader.js"></script>
   <script src="../3D Model Part/Detector.js"></script>
   <script src="../3D Model Part/3D_Test.js"></script>
-  <script src="../../DynamicPanels/3D_Test.js"></script>
+
+   <!-- local libs -->
+  <script src="js/Recipe.js"></script>
+  <script src="js/ui.js"></script>
+
+  <script src="js/xml2jsobj.js"></script>
+<title>
+</title>
 </head>
 
 <body>
@@ -29,13 +35,15 @@
 
 <nav>
 <div class="navbar navbar-inverse">
-  <!-- <div class="container-fluid"> -->
-    <ul class="nav navbar-nav" id="navigationContainer">
-      <li><a href="#" id="tab1">Order Info</a></li>
-      <li><a href="#" id="tab2">Recipe Info</a></li>
-      <li><a href="#" id="tab3">Visualization</a></li>
-      <li><a class="disabled">Order Code</a></li>
-    </ul>
+<div id="navigation">
+  <ul class="nav navbar-nav" id="navigationContainer">
+      <li id="home" onclick="navMenu(id)"><a href="#">Home</a></li> 
+      <li id="view1" onclick="navMenu(id)"><a href="#">Order Info</a></li>    
+      <li id="dynamicPanels" onclick="navMenu(id)"><a href="#">Visualization</a></li>
+      <li id="view3" onclick="navMenu(id)"><a href="#">Recipe Info</a></li>  
+    <li><a class="disabled">Order Code</a></li>
+  </ul>
+</div>
     <ul class="nav navbar-nav navbar-right">
 	    <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -49,12 +57,9 @@
       </li>
     </ul>
   </div>
-<!-- </div> -->
 </nav>
-
-
 <main class="mainContainer">
-    <div id="includedContent"></div>
+    <div id="includedContent"></div>    
     <!-- <div class="leftSideBar"></div>
     <div class="content">
       <div class="contentHeader">Header</div>
@@ -62,7 +67,6 @@
     </div>
     <div class="rightSideBar"></div> -->
 </main>
-
   <footer>
       <p>©Copyright 2017 by CICT. All rights reversed.</p>
     </footer>
@@ -71,27 +75,20 @@
 
 
 <script type="text/javascript">
-$(function(){
-    $("#includedContent").load("dynamicPanels.html"); 
-});
-//loading from extern files
-$(function(){
-    $(".leftSideBar").load("TabsContainer.html");
-      // $(".content").load("Content.html");
-});
-
- $(document).ready(function() {
-    $(".leftSideBar").hide();
-});
-
+function navMenu(filename) {
+  var url = document.URL;
+  var shorturl = url.substring(0,url.lastIndexOf("/"));
+  var fullurl = shorturl + '/Views/' + filename + '.html';
+  console.log(filename)
+  $( "#includedContent" ).load(fullurl);
+}
 //navigationContainer logic
-$('#navigationContainer a').on('click', function() {
-  var id = $(this).prop('id');
-  console.log(id)
-
-  
-  $(".leftSideBar").show();
-  $('.leftSideBar > div[data-id=' + id + ']').show();
-  $('.leftSideBar > div:not([data-id=' + id + '])').hide();
-});
+// $('#navigationContainer a').on('click', function() {
+//   var id = $(this).prop('id');
+//   // console.log(id)
+//   $(".leftSideBar").show();
+//   $('.leftSideBar > div[data-id=' + id + ']').show();
+//   $('.leftSideBar > div:not([data-id=' + id + '])').hide();
+// });
+ 
 </script>
