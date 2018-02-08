@@ -18,7 +18,6 @@
    <!-- local libs -->
   <script src="js/Recipe.js"></script>
   <script src="js/ui.js"></script>
-
   <script src="js/xml2jsobj.js"></script>
 <title>
 </title>
@@ -60,12 +59,7 @@
 </nav>
 <main class="mainContainer">
     <div id="includedContent"></div>    
-    <!-- <div class="leftSideBar"></div>
-    <div class="content">
-      <div class="contentHeader">Header</div>
-      <div class="contentBody">ContentContentContent </div>
-    </div>
-    <div class="rightSideBar"></div> -->
+    
 </main>
   <footer>
       <p>©Copyright 2017 by CICT. All rights reversed.</p>
@@ -79,7 +73,7 @@ function navMenu(filename) {
   var url = document.URL;
   var shorturl = url.substring(0,url.lastIndexOf("/"));
   var fullurl = shorturl + '/Views/' + filename + '.html';
-  console.log(filename)
+  console.log(fullurl)
   $( "#includedContent" ).load(fullurl);
 }
 //navigationContainer logic

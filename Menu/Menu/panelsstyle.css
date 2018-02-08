@@ -44,12 +44,12 @@
   }
 
   #col2 {
-    background: none no-repeat 0 0 scroll #111;
+    background: none no-repeat 0 0 scroll rgb(255, 255, 255);
     float: left;
     width: 22%;   
   }
   #col3 {
-    background: none no-repeat 0 0 scroll #777;
+    background: none no-repeat 0 0 scroll rgb(255, 255, 255);  
     float: left;
     width: 22%;       
   }
@@ -73,8 +73,8 @@
   
   .widget-content {
     position: left;
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 500px;
     border: 1px solid #000;
 }
 .btn-minimize {
@@ -91,4 +91,31 @@
   width: 100px;
   height: 100px;
   background: #ccc;
+}
+
+#containerpreviews {
+	width: auto;
+	height: 100%;
+	background-color: #fff;
+	overflow: auto;
+}
+
+.containerpreview  {
+	height: 150px;
+	width: 100px;
+	background-color: #fff;
+	/* margin: 5px; */
+	float: left;
+	/*border-radius: 1em;*/
+	/* border: 1px solid #fff; */
+	/* box-shadow: 5px 5px 5px #ddd; */
+}
+.containerpreview:hover {
+	background-color: #eef;
+	border: 1px solid #ddf;
+}
+.containerpreview  canvas{
+	padding: 0;
+    margin: 20px auto;
+    display: block;
 }

@@ -206,7 +206,7 @@
 			<stackinginfo stackingclass="2" maxweightontop="250000" topnonsupportborder="0" bottomnonsupportborder="0" rigidity="30" rotationxscore="0" rotationyscore="0"/>
 		</orderline>
 	</orderlinelist>
-</order>
+	</order>
   <recipestatistics>
   <statistic name="avgfillratio" value="0.588627838605" />
   <statistic name="calculationtime" value="28656" />
@@ -273,7 +273,7 @@
 	<instruction index="11" typecode="PickP" locationcode="" orderlineid="0" productcode="R003_CU" amount="1" packageindexlist="20"/>
 	<instruction index="12" typecode="PickP" locationcode="" orderlineid="0" productcode="R012_CU" amount="1" packageindexlist="21"/>
 	<instruction index="13" typecode="PickP" locationcode="" orderlineid="0" productcode="R002_CU" amount="1" packageindexlist="22"/>
-</instructionlist>
+	</instructionlist>
     <physicalresult>
 	<package index="0" typecode="BOX" orderlineid="0" productcode="R005_CU">
 		<position x="-560" y="-718" z="0"/>
@@ -413,13 +413,13 @@
 		<rotation x="0" y="0" z="0"/>
 		<statistics remainingweightontop="250000000" stability="1.000000"/>
 	</package>
-</physicalresult>
+	</physicalresult>
     <containercontentlist>
 	<containercontentitem type="PRODUCT" productcode="R002_CU" subordercode="" packagingtype="" amount="5"/>
 	<containercontentitem type="PRODUCT" productcode="R005_CU" subordercode="" packagingtype="" amount="9"/>
 	<containercontentitem type="PRODUCT" productcode="R012_CU" subordercode="" packagingtype="" amount="5"/>
 	<containercontentitem type="PRODUCT" productcode="R003_CU" subordercode="" packagingtype="" amount="4"/>
-</containercontentlist>
+	</containercontentlist>
   </containerrecipe>
   <containerrecipe index="1"  containertypecode="EUR120X080" >
     <containerstatistics>
@@ -455,7 +455,7 @@
 	<instruction index="6" typecode="PickP" locationcode="" orderlineid="0" productcode="R001_CU" amount="2" packageindexlist="14,15"/>
 	<instruction index="7" typecode="PickP" locationcode="" orderlineid="0" productcode="R001_CU" amount="2" packageindexlist="16,17"/>
 	<instruction index="8" typecode="PickP" locationcode="" orderlineid="0" productcode="R001_CU" amount="2" packageindexlist="18,19"/>
-</instructionlist>
+	</instructionlist>
     <physicalresult>
 	<package index="0" typecode="BOX" orderlineid="0" productcode="R004_CU">
 		<position x="-505" y="-890" z="0"/>
@@ -577,13 +577,13 @@
 		<rotation x="0" y="0" z="0"/>
 		<statistics remainingweightontop="300000000" stability="1.000000"/>
 	</package>
-</physicalresult>
+	</physicalresult>
     <containercontentlist>
 	<containercontentitem type="PRODUCT" productcode="R001_CU" subordercode="" packagingtype="" amount="8"/>
 	<containercontentitem type="PRODUCT" productcode="R013_CU" subordercode="" packagingtype="" amount="6"/>
 	<containercontentitem type="PRODUCT" productcode="R006_CU" subordercode="" packagingtype="" amount="4"/>
 	<containercontentitem type="PRODUCT" productcode="R004_CU" subordercode="" packagingtype="" amount="2"/>
-</containercontentlist>
+	</containercontentlist>
   </containerrecipe>
   <containerrecipe index="2"  containertypecode="EUR120X080" >
     <containerstatistics>
@@ -618,7 +618,7 @@
 	<instruction index="5" typecode="PickP" locationcode="" orderlineid="0" productcode="R007_CU" amount="1" packageindexlist="12"/>
 	<instruction index="6" typecode="PickP" locationcode="" orderlineid="0" productcode="R014_CU" amount="4" packageindexlist="13,14,15,16"/>
 	<instruction index="7" typecode="PickP" locationcode="" orderlineid="0" productcode="R014_CU" amount="3" packageindexlist="17,18,19"/>
-</instructionlist>
+	</instructionlist>
     <physicalresult>
 	<package index="0" typecode="BOX" orderlineid="0" productcode="R011_CU">
 		<position x="-503" y="-960" z="0"/>
@@ -740,14 +740,14 @@
 		<rotation x="0" y="0" z="0"/>
 		<statistics remainingweightontop="250000000" stability="1.000000"/>
 	</package>
-</physicalresult>
+	</physicalresult>
     <containercontentlist>
 	<containercontentitem type="PRODUCT" productcode="R014_CU" subordercode="" packagingtype="" amount="7"/>
 	<containercontentitem type="PRODUCT" productcode="R010_CU" subordercode="" packagingtype="" amount="6"/>
 	<containercontentitem type="PRODUCT" productcode="R008_CU" subordercode="" packagingtype="" amount="2"/>
 	<containercontentitem type="PRODUCT" productcode="R007_CU" subordercode="" packagingtype="" amount="1"/>
 	<containercontentitem type="PRODUCT" productcode="R011_CU" subordercode="" packagingtype="" amount="4"/>
-</containercontentlist>
+	</containercontentlist>
   </containerrecipe>
   </containerrecipelist>
-</recipe>
+	</recipe>

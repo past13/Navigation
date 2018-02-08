@@ -15,8 +15,14 @@ var renderer, domEvents;
 var containerIndex, containerMesh;
 
 function createContainer3DPreview(parentid, container) {
-console.log(parentid)
+  console.log(parentid)
+  console.log(container)
+  
+
+
   var parentelement = document.getElementById(parentid);
+console.log(parentelement)
+  
 
   var previewwidth = parentelement.clientWidth;
   var previewheight = parentelement.clientHeight-100;
@@ -95,9 +101,10 @@ function createContainerPreview(parentid, container) {
       containerIndex = container.index;
       containerMesh = container.mesh;
      
+      //full view
       createFullContainerView(container);
 
-      $('#containerpreviews').hide();
+      // $('#containerpreviews').hide();
       $('containerfullview').show();
     });
 
@@ -137,7 +144,7 @@ function createFullContainerView(container) {
   camera = container.fullviewcamera; 
 
   //laurynas
-  domEvents	= new THREEx.DomEvents(camera, renderer.domElement); 
+  // domEvents	= new THREEx.DomEvents(camera, renderer.domElement); 
    
   if (!container.fullviewscene) {
     container.fullviewscene = new THREE.Scene();
@@ -175,7 +182,7 @@ function createFullContainerView(container) {
 
   container.animateFullView = function () {
     if (!container.showfull) return;
-    // container.mesh.rotation.y = (container.mesh.rotation.y + 0.01) % (Math.PI * 2);
+    container.mesh.rotation.y = (container.mesh.rotation.y + 0.01) % (Math.PI * 2);
         
     //laurynas
     document.addEventListener( 'mousedown', onDocumentMouseActions, false );
