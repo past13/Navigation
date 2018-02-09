@@ -1,6 +1,4 @@
 var $recipe = {};
-
-
 var projector;
 
 // function setStatus(text) {
@@ -19,24 +17,29 @@ var rect = new Rectangle(10, 20);
 }
 */
 
-function loadRecipe(node) {
-  // setStatus('Parsing recipe...');
-  var result = {};
-  result.xml = node.text();
-  $orderNode = node.find('order');
-  result.order = loadOrder($orderNode);
-  result.statistics = {};
-  node.find('recipestatistics > statistic').each(function() {
-    result.statistics[ $(this).attr('name') ] = $(this).attr('value');
-  });
-  result.containerlist = {};
-  node.find('containerrecipelist > containerrecipe').each(function() {
-    var c = loadContainerRecipe( $(this), result.order.orderlinelist );
-    c.containertype = result.order.containertypelist[c.containertypecode];
-    result.containerlist[ c.index ] = c;
-  });
+// function loadRecipe(node) {
+//   // setStatus('Parsing recipe...');
+//   var result = {};
+//   result.xml = node.text();
+//   $orderNode = node.find('order');
+//   result.order = loadOrder($orderNode);
+//   result.statistics = {};
+//   node.find('recipestatistics > statistic').each(function() {
+//     result.statistics[ $(this).attr('name') ] = $(this).attr('value');
+//   });
+//   result.containerlist = {};
+//   node.find('containerrecipelist > containerrecipe').each(function() {
+//     var c = loadContainerRecipe( $(this), result.order.orderlinelist );
+//     c.containertype = result.order.containertypelist[c.containertypecode];
+//     result.containerlist[ c.index ] = c;
+//   });
 
-  return result;
+//   return result;
+// }
+
+function prepareOverallStatistics(recipe) {
+  var statistics = recipe.recipestatistics.statistic;
+  return statistics;
 }
 
 function create3DMeshes() {
@@ -201,19 +204,19 @@ function customizeXmlObj(jsObj) {
 }
 
 function readRecipeFile(file) {
-  console.log(file)
   // setStatus('Loading recipe...');
  
   $.get('recipe.xml', function(data) {
 
     var xmlObj = XML2jsobj(data.documentElement);    
     var recipe = customizeXmlObj(xmlObj);    
-    $recipe = recipe;
-    
+    $recipe = recipe;    
 
+    var statisticobj = prepareOverallStatistics(recipe);
+
+    showOverallStatistics(null, statisticobj)
     create3DMeshes();
     createContainerPreviews();
-
     // update();
 
     // setStatus('Recipe loaded: ' + $recipe.order.code);

@@ -73,9 +73,11 @@ function navMenu(filename) {
   var url = document.URL;
   var shorturl = url.substring(0,url.lastIndexOf("/"));
   var fullurl = shorturl + '/Views/' + filename + '.html';
-  console.log(fullurl)
   $( "#includedContent" ).load(fullurl);
 }
+
+
+
 //navigationContainer logic
 // $('#navigationContainer a').on('click', function() {
 //   var id = $(this).prop('id');

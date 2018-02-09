@@ -1,10 +1,3 @@
-//need to add?
-// //	if ( Detector.webgl )
-// // 	renderer = new THREE.WebGLRenderer( {antialias:true} );
-// // else
-// var renderer = new THREE.CanvasRenderer();
-
-
 var controls, camera, mouse = { x: 0, y: 0 };
 var targetList = [];
 var INTERSECTED;
@@ -12,21 +5,26 @@ var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 var renderer, domEvents;
 
-var containerIndex, containerMesh;
+function showOverallStatistics(id, stats) {
+  if (id !== null) {
+    var list = document.getElementById("statistictotal");
+    while (list.firstChild) {
+      list.removeChild(list.firstChild);
+    }  
+  }  
+  $('<div id="statistictotal"></div>').appendTo("#col1");  
+  $.each(stats, function (index, value) {
+    $('<div class="overalstatistics" id="' + 'statistic' + index +  '">' + stats[index].name + '</div>').appendTo("#statistictotal");
+    $('<span class="statistictitle">' + stats[index].value + '</span>').appendTo("#statistic" + index);
+  });  
+}
+
 
 function createContainer3DPreview(parentid, container) {
-  console.log(parentid)
-  console.log(container)
-  
-
-
   var parentelement = document.getElementById(parentid);
-console.log(parentelement)
-  
-
   var previewwidth = parentelement.clientWidth;
   var previewheight = parentelement.clientHeight-100;
-
+  
   container.shadowsinpreview = false;  // doesn't work?
   container.animatepreview = false;
 
@@ -97,15 +95,16 @@ function createContainerPreview(parentid, container) {
     .click(function() {
       container.showfull = true;
       container.animatepreview = false;
-      //laurynas
-      containerIndex = container.index;
-      containerMesh = container.mesh;
      
       //full view
       createFullContainerView(container);
 
-      // $('#containerpreviews').hide();
+      //refresh statisticpanel
+      showOverallStatistics(container.index, container.containerstatistics.statistic);
+
       $('containerfullview').show();
+      $('#containerpreviews').show();
+    
     });
 
   createContainer3DPreview(previewid, container);
@@ -113,10 +112,19 @@ function createContainerPreview(parentid, container) {
 }
 
 function createFullContainerView(container) {
-  
+
+  var myNode = document.getElementById("containerfullview");
+
+  while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+  }
+
   $("#fullview").remove();
   $('<div id="fullview"></div>').appendTo("#containerfullview");
   var parentelement = document.getElementById('containerfullview');
+
+
+  
   var fullviewwidth = parentelement.clientWidth;
   var fullviewheight = parentelement.clientHeight;
 
@@ -132,20 +140,13 @@ function createFullContainerView(container) {
   container.fullviewrenderer.setClearColor( 0xffffff, 0);
   container.fullviewrenderer.shadowMap.enabled = container.shadowsinfullview;
   container.fullviewrenderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+  
   parentelement.appendChild( container.fullviewrenderer.domElement );
-
-  //added Laurynas  
-  controls = new THREE.OrbitControls( container.previewcamera, container.previewrenderer.domElement  );
-   
-  //add mesh to container with coordinates 
 
   targetList.push(container.mesh);
   renderer = container.fullviewrenderer;
   camera = container.fullviewcamera; 
 
-  //laurynas
-  // domEvents	= new THREEx.DomEvents(camera, renderer.domElement); 
-   
   if (!container.fullviewscene) {
     container.fullviewscene = new THREE.Scene();
     container.fullviewscene.add( container.mesh );
@@ -222,17 +223,7 @@ var containertype = $recipe.order.containertype;
 var orderlinelist1 = $recipe;
 
 
-//4B04433A-E580-43AF-9917-CEEA3FA71BA3 
-
-//get cointainer by ID
-// var containerById = _.get($recipe.containerlist, containerIndex);
-// var tags = ['mesh', 'children'];
-// var uiidExample = '4B04433A-E580-43AF-9917-CEEA3FA71BA3';
-// var zaz = _.get(containerById, tags);
-// var vaz = _.get(zaz, uiidExample);
-
-function update()
-{
+function update() {
   var vector = new THREE.Vector3(mouse.x, mouse.y, 1);
   
   vector.unproject(camera);
@@ -254,7 +245,6 @@ function update()
       // store reference to closest object as current intersection object
       INTERSECTED = intersects[0].object;
             
-      console.log(INTERSECTED)
 
       var meshas = containerMesh;
       //uuid of all pallet
@@ -296,8 +286,7 @@ function update()
 
   controls.update();
   // stats.update();
-}
- 
+  } 
 }
 
 
