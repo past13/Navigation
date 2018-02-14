@@ -17,29 +17,44 @@ var rect = new Rectangle(10, 20);
 }
 */
 
-// function loadRecipe(node) {
-//   // setStatus('Parsing recipe...');
-//   var result = {};
-//   result.xml = node.text();
-//   $orderNode = node.find('order');
-//   result.order = loadOrder($orderNode);
-//   result.statistics = {};
-//   node.find('recipestatistics > statistic').each(function() {
-//     result.statistics[ $(this).attr('name') ] = $(this).attr('value');
-//   });
-//   result.containerlist = {};
-//   node.find('containerrecipelist > containerrecipe').each(function() {
-//     var c = loadContainerRecipe( $(this), result.order.orderlinelist );
-//     c.containertype = result.order.containertypelist[c.containertypecode];
-//     result.containerlist[ c.index ] = c;
-//   });
-
-//   return result;
-// }
+function addChilds(packages) {    
+  var newlist = [];
+  packages.forEach(element => {    
+  var pack = {
+  
+    text: element.orderlineid 
+  }
+    newlist.push(pack)
+  });
+  return newlist;
+}
 
 function prepareOverallStatistics(recipe) {
   var statistics = recipe.recipestatistics.statistic;
   return statistics;
+}
+
+function prepareDataForTreeView(recipe) {
+  var obj = [];
+
+  var containerlist = recipe.containerrecipelist.containerrecipe;
+  var contammount = containerlist.length;
+
+  containerlist.forEach(element => {
+
+    var pallettype = element.containertypecode;    
+    var amountonpallet = element.physicalresult.package.length;
+    var package = element.physicalresult.package;
+       
+    var pallet = {
+      text: pallettype,
+      tags: [amountonpallet],
+      nodes : child = addChilds(package),
+    }
+    obj.push(pallet)  
+  });   
+  
+  return obj;
 }
 
 function create3DMeshes() {
@@ -67,9 +82,7 @@ function create3DMeshes() {
   // create container scenes
   for (var key in $recipe.containerrecipelist.containerrecipe) if ($recipe.containerrecipelist.containerrecipe.hasOwnProperty(key)) {
     var container = $recipe.containerrecipelist.containerrecipe[key];   
-
     container.mesh = new THREE.Mesh();
-
     var mesh;
     mesh = new THREE.Mesh(container.containerlist.geometry, container.containerlist.material);
     mesh.position.set(containertype.offset.x, containertype.offset.y, containertype.offset.z);
@@ -192,6 +205,7 @@ function customizeXmlObj(jsObj) {
     var containerTypeCode = jsObj.containerrecipelist.containerrecipe;
     var temporderlinelist = jsObj.order.orderlinelist;
 
+
     //add default colors and meshes for orderlines
     var orderlinewithmeshcolor = defaultColorsAndMesh(temporderlinelist);
     //prepare orderlist (arrayToObject)
@@ -200,6 +214,7 @@ function customizeXmlObj(jsObj) {
     var packagelist = packageorders(jsObj, orderslist, containerTypeCode);     
     //recalculate rotation property in pack
     recalculateCoordinates(packagelist);
+
     return jsObj;
 }
 
@@ -212,11 +227,14 @@ function readRecipeFile(file) {
     var recipe = customizeXmlObj(xmlObj);    
     $recipe = recipe;    
 
-    var statisticobj = prepareOverallStatistics(recipe);
+    var statisticobj = prepareOverallStatistics(recipe);    
+    var treeviewobj = prepareDataForTreeView(recipe);
 
-    showOverallStatistics(null, statisticobj)
+    showTree(treeviewobj);
+    showOverallStatistics(null, statisticobj);
     create3DMeshes();
     createContainerPreviews();
+
     // update();
 
     // setStatus('Recipe loaded: ' + $recipe.order.code);

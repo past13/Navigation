@@ -19,7 +19,6 @@ function showOverallStatistics(id, stats) {
   });  
 }
 
-
 function createContainer3DPreview(parentid, container) {
   var parentelement = document.getElementById(parentid);
   var previewwidth = parentelement.clientWidth;

@@ -11,9 +11,13 @@
           </div>
           <div id="splitter1" class="resizer first"></div>
           <div id="col2" class="col">            
-            <h3 id="panel2" onclick="hidepanel(this)">Second container</h3>        
-            <!-- <div id="includedContent"></div>     -->
-            <div id="containerpreviews"></div>    
+            <h3 id="panel2" onclick="hidepanel(this)">Second container</h3>
+            <button id="treeview" type="button" class="btn btn-primary btn-md" onclick="changeListView()">
+                <img src="img/treeviewbutton.png" width="20" />
+            </button>
+            <div id="containerpreviews" style="display:visible;"></div>    
+            <div id="tree" class="treeview" style="display:none;"></div>
+                        
           </div>
           <div id="splitter2" class="resizer first"></div>
           <div id="col3" class="col">
@@ -23,7 +27,8 @@
           <div id="splitter3" class="resizer first"></div>
           <div id="col4" class="col">
               <h3 id="panel4" onclick="hidepanel(this)">Four container</h3>
-              <div id="route"></div>
+              <!-- <div id="route"></div> -->
+              
           </div>
       </div>
     <script>     
@@ -39,6 +44,44 @@
     $(function() { 
       $( "#col2" ).load(readRecipeFile('recipe.xml')); 
     });
+
+    // document.getElementById('treeview').addEventListener('click',changeListView,false);
+   
+   function changeListView(id) {
+
+  if ($('#containerpreviews').is(":visible")) {   
+
+
+    $('#tree').show();
+    $('#containerpreviews').hide();
+  }
+  else {
+    $('#tree').hide();
+    $('#containerpreviews').show();
+  }
+
+
+  
+  
+
+  
+
+
+   }
+    // <div id="tree" class="treeview" style="position: relative"></div>
+
+
+    function showTree(obj) {
+      $('#tree').treeview({
+        color: "#428bca",   
+      
+        // expandIcon: "glyphicon glyphicon-stop",
+        // collapseIcon: "glyphicon glyphicon-unchecked",
+        // nodeIcon: Image('pallet.png'),//"glyphicon glyphicon-user",
+        showTags: true,
+        data: obj
+      });  
+    }
 
     function calculateColWidth(columnwidth) {  
       if (columnwidth >! MINPANELWIDTH && columnwidth != MINPANELWIDTH) {      

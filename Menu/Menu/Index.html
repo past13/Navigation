@@ -18,7 +18,14 @@
    <!-- local libs -->
   <script src="js/Recipe.js"></script>
   <script src="js/ui.js"></script>
-  <script src="js/xml2jsobj.js"></script>
+  <script src="js/xml2jsobj.js"></script> 
+  <script src="js/dataa.js"></script>
+
+
+  <!-- treeView lib -->
+  <link rel="stylesheet" type="text/css" href="bootstrap-treeview.css" >
+  <script src="js/bootstrap-treeview.js"></script>
+
 <title>
 </title>
 </head>
@@ -69,6 +76,7 @@
 
 
 <script type="text/javascript">
+
 function navMenu(filename) {
   var url = document.URL;
   var shorturl = url.substring(0,url.lastIndexOf("/"));
@@ -76,15 +84,4 @@ function navMenu(filename) {
   $( "#includedContent" ).load(fullurl);
 }
 
-
-
-//navigationContainer logic
-// $('#navigationContainer a').on('click', function() {
-//   var id = $(this).prop('id');
-//   // console.log(id)
-//   $(".leftSideBar").show();
-//   $('.leftSideBar > div[data-id=' + id + ']').show();
-//   $('.leftSideBar > div:not([data-id=' + id + '])').hide();
-// });
- 
 </script>
